@@ -1,0 +1,20 @@
+{
+  "name": "movie-back-end",
+  "version": "1.0.0",
+  "description": "API para avaliação de filmes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js"
+  },
+  "keywords": [],
+  "author": "Rafael Neves",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
