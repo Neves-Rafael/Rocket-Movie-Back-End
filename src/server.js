@@ -1,6 +1,9 @@
 //importando o express-async-errors
 require("express-async-errors");
 
+//importando conexão com o Sqlite
+const database = require("./database/sqlite")
+
 //importando AppError
 const AppError = require("./utils/AppError")
 
@@ -18,6 +21,9 @@ const app = express();
 app.use(express.json());
 
 app.use(routes);
+
+//inicializando o database
+database();
 
 //Verificação geral de errors
 //manter sintaxe mesmo se request e next não forem utilizados por exemplo
