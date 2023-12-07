@@ -2,15 +2,15 @@
 const { Router } = require("express");
 
 //importando o users Controller para repassar a funcionalidade
-const UsersController = require("../controllers/UsersController")
+const UsersController = require("../controllers/UsersController");
 
 //inicializando o Router
 const usersRoutes = Router();
 
 //instanciando a classe
-const usersController =  new UsersController();
+const usersController = new UsersController();
 
-//Fazendo uma requisição com o get() e devolvendo com o response.send();
+//Fazendo uma requisição com o post chamando o usersController.create para gerar um novo usuário
 //Query Params
 usersRoutes.post("/", usersController.create);
 

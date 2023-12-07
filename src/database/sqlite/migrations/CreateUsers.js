@@ -1,4 +1,4 @@
-//Criação da Tabela de usuários em SQL para ser repassada ao Beekeeper
+//Criação da Tabela de usuários em SQL para o DB
 
 const createUsers = `
 CREATE TABLE IF NOT EXISTS users (
