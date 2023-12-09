@@ -1,18 +1,19 @@
-const { Router} = require("express");
+//Importando o Router do express para ligar com as rotas
+const { Router } = require("express");
 
 //Objetivo é reunir todas as rotas em só arquivo
 
-const usersRoutes = require("./users.routes")
+const usersRoutes = require("./users.routes");
 const notesRoutes = require("./notes.routes");
 const tagsRoutes = require("./tags.routes");
-const ratingRoutes = require("./rating.routes")
+const ratingRoutes = require("./rating.routes");
 
 const routes = Router();
 
-//Redireciona o caminho de "/users" para usersRoutes e no userRoutes passamos apenas o / já que enviamos daqui o caminho
+//Redireciona o caminho de solicitação para as routes e redirecionamos para o seu local especifíco por exemplo o userRoutes
 routes.use("/users", usersRoutes);
 routes.use("/notes", notesRoutes);
 routes.use("/tags", tagsRoutes);
-routes.use("/rating", ratingRoutes)
+routes.use("/rating", ratingRoutes);
 
 module.exports = routes;

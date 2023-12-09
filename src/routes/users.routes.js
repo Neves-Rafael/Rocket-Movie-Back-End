@@ -16,6 +16,5 @@ usersRoutes.post("/", usersController.create);
 usersRoutes.put("/:id", usersController.update);
 usersRoutes.get("/:id", usersController.show);
 
-
 //exportando para quem quiser utilizar
 module.exports = usersRoutes;

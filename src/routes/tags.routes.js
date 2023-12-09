@@ -15,6 +15,5 @@ const tagsController = new TagsController();
 
 tagsRoutes.get("/:user_id", tagsController.index);
 
-
 //exportando para quem quiser utilizar
 module.exports = tagsRoutes;

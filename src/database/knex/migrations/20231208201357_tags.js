@@ -13,7 +13,7 @@ exports.up = (knex) =>
       .references("id")
       .inTable("notes")
       .onDelete("CASCADE");
-      
+
     table.text("name");
   });
 

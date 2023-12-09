@@ -15,6 +15,5 @@ const ratingController = new RatingController();
 
 ratingRoutes.get("/", ratingController.index);
 
-
 //exportando para quem quiser utilizar
 module.exports = ratingRoutes;

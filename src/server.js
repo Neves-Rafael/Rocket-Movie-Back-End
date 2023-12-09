@@ -1,10 +1,10 @@
 //importando o express-async-errors
 require("express-async-errors");
 
-//importando conexão com o Sqlite
+//importando conexão com o Sqlite, como passamos a usar o knex, não precisamos mais de fazer a conexão aqui
 // const database = require("./database/sqlite") -- substituido pelas migrations
 
-//importando as migrations
+//importando as migrations de forma tradicional
 // const migrationsRun = require("./database/sqlite/migrations");
 
 //importando AppError
@@ -24,8 +24,7 @@ app.use(express.json());
 
 app.use(routes);
 
-//inicializando o database
-// database(); -- substituido pelas migrations
+//Forma tradicional de se inicializar e  usar o SQL diretamente pelo JavasScriptsem o query builder
 // migrationsRun();
 
 //Verificação geral de errors
@@ -41,7 +40,7 @@ app.use((error, request, response, next) => {
   }
 
   console.error(error);
-
+  //retornando erro para o insominia
   return response.status(500).json({
     status: "Error",
     message: "Internal server Error",
