@@ -5,7 +5,7 @@ require("express-async-errors");
 // const database = require("./database/sqlite") -- substituido pelas migrations
 
 //importando as migrations
-const migrationsRun = require("./database/sqlite/migrations");
+// const migrationsRun = require("./database/sqlite/migrations");
 
 //importando AppError
 const AppError = require("./utils/AppError");
@@ -26,7 +26,7 @@ app.use(routes);
 
 //inicializando o database
 // database(); -- substituido pelas migrations
-migrationsRun();
+// migrationsRun();
 
 //Verificação geral de errors
 //manter sintaxe mesmo se request e next não forem utilizados por exemplo

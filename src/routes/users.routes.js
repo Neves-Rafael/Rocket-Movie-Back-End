@@ -13,7 +13,9 @@ const usersController = new UsersController();
 //Fazendo uma requisição com o post chamando o usersController.create para gerar um novo usuário
 //Query Params
 usersRoutes.post("/", usersController.create);
-usersRoutes.put("/:id", usersController.update)
+usersRoutes.put("/:id", usersController.update);
+usersRoutes.get("/", usersController.show);
+
 
 //exportando para quem quiser utilizar
 module.exports = usersRoutes;
