@@ -15,6 +15,7 @@ class NotesController {
       user_id,
     });
 
+    //Pegando campos para passar a tabela rating
     const starsInsert = { description, user_id, note_id, stars };
 
     await knex("rating").insert(starsInsert);
