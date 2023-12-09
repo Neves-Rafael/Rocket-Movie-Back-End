@@ -14,7 +14,7 @@ const usersController = new UsersController();
 //Query Params
 usersRoutes.post("/", usersController.create);
 usersRoutes.put("/:id", usersController.update);
-usersRoutes.get("/", usersController.show);
+usersRoutes.get("/:id", usersController.show);
 
 
 //exportando para quem quiser utilizar

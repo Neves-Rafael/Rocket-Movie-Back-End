@@ -1,5 +1,6 @@
 //Importando o Hash do Bcrypt e o compare para verificar senhas apos a cripitrografia
 const { hash, compare} = require("bcryptjs")
+const knex = require("../database/knex")
 
 //importando AppError para verificações
 const AppError = require("../utils/AppError");
@@ -11,7 +12,7 @@ const sqliteConnection = require("../database/sqlite");
 class UsersController {
   //Criação do usuário
   async create(request, response) {
-    const { name, email, password } = request.body;
+    const { name, email, password, admin } = request.body;
 
     //Criando conexão com o DB
     const database = await sqliteConnection();
@@ -30,7 +31,7 @@ class UsersController {
     const hashedPassword = await hash(password, 8)
 
     //inserindo usuários na tabela
-    await database.run("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", [name, email, hashedPassword])
+    await database.run("INSERT INTO users (name, email, password, admin) VALUES (?, ?, ?, ?)", [name, email, hashedPassword, admin])
 
 
     return response.status(201).json({
@@ -105,6 +106,19 @@ class UsersController {
     return response.status(200).json({
       message: "Usuário atualizado com sucesso"
     })
+  }
+
+  async show(request, response){
+    const {id} = request.params;
+
+    const user = await knex("users").where({id}).select("id","name","email","admin").first();
+
+    console.log(user)
+    if(user.admin !== 1){
+      throw new AppError("você não tem permissão de administrador para acessar", 400)
+    }
+
+    return response.json({user})
   }
 }
 
