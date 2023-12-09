@@ -1,5 +1,5 @@
 <h1 align="center">🌐 Movie Data-Base</h1>
-<h3 align="center">📚 O projeto possui bastante comentário para servir de consulta futuramente!</h3>
+<h3 align="center">📚 O projeto possui bastante comentário para servir de consulta futuramente!</h3> <br/> <br/>
 
 ![image](https://github.com/Neves-Rafael/Movie-DataBase/assets/136202919/5d47024d-6996-45a5-b6bb-41baf804ecf3)
 
