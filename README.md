@@ -8,7 +8,7 @@
 <p align="center">É uma aplicação Back-End que permite o cadastro de usuários em um banco de dados, adicionando notas para os filmes, links e tags vinculados a esse mesmo usuário já existente!</p>
 <br/>
 <br/>
-<p align="center">Utilizando Node.Js com o insomnia, beekeeper, SQLite3 e dependências como Express, Knex e Bcryptjs desenvolvi um Back-End com as funcionalidades CRUD. Tendo autenticações para verificação de usuários já existentse e atualização dos dados.</p>
+<p align="center">Utilizando Node.Js com o insomnia, beekeeper, SQLite3 e dependências como Express, Knex e Bcryptjs desenvolvi um Back-End possuindo autenticações para verificação de usuários já existentse e atualização dos dados.</p>
 <br/>
 
 
