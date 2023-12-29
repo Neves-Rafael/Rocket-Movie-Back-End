@@ -1,4 +1,4 @@
-<h1 align="center">🌐 Movie Data-Base</h1>
+<h1 align="center">🌐 Rocket Movie Back-End</h1>
 <h3 align="center">📚 O código possui comentários para servir de consulta/estudo futuramente!</h3> <br/> <br/>
 
 ![image](https://github.com/Neves-Rafael/Movie-DataBase/assets/136202919/5d47024d-6996-45a5-b6bb-41baf804ecf3)
@@ -48,7 +48,7 @@ Além disto é bom ter um editor para trabalhar com o código como <a href="http
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/Neves-Rafael/Movie-Back-End
+$ git clone https://github.com/Neves-Rafael/Rocket-Movie-Back-End
 $ npm install 
 $ configure o package.json para utilizar o nodemon e o knex para iniciar a migrate
 
