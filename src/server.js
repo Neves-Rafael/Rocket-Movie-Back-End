@@ -1,3 +1,5 @@
+//expressjs é um framework web utilizado com node.js para simplificar o processo de criação de servidores web. Fornece uma amada de reursos para faciliatar o roteamente e o gerenciamento de requisições/respostas. Pode criar facilmente rotas para diferentes URLs e manipular solicitações HTTP.
+
 //importando o express-async-errors
 require("express-async-errors");
 
@@ -11,7 +13,7 @@ require("express-async-errors");
 const AppError = require("./utils/AppError");
 
 //coletando o express e atribuindo a uma const
-const express = require("express");
+const express = require("express")
 
 //importando as rotas
 const routes = require("./routes");
@@ -24,7 +26,7 @@ app.use(express.json());
 
 app.use(routes);
 
-//Forma tradicional de se inicializar e  usar o SQL diretamente pelo JavasScriptsem o query builder
+//Forma tradicional de se inicializar e  usar o SQL diretamente pelo JavasScript sem o query builder
 // migrationsRun();
 
 //Verificação geral de errors
