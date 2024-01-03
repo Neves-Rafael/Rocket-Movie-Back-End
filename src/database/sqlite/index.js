@@ -1,9 +1,11 @@
 const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
-//Bilioteca já inserida com o node
+//Biblioteca já inserida com o node
 const path = require("path");
 
 //Adicionando conexão com o banco de dados (necessário ser Async já que ocorre em momentos diferentes)
+
+//Caso não exista o DB, ele irá criar um novo
 
 async function sqliteConnection() {
   const database = await sqlite.open({
