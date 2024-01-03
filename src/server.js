@@ -4,8 +4,9 @@
 //trabalha junto do express para tratar erros de async
 require("express-async-errors");
 
-//importando conexão com o Sqlite, como passamos a usar o knex, não precisamos mais de fazer a conexão aqui;
-// const database = require("./database/sqlite") -- substituído pelas migrations;
+//importando conexão com o Sqlite, como passamos a usar o knex, não precisamos mais de fazer a conexão aqui. -- substituído pelas migrations;
+const database = require("./database/sqlite") 
+database();
 
 //importando as migrations de forma tradicional;
 // const migrationsRun = require("./database/sqlite/migrations");
