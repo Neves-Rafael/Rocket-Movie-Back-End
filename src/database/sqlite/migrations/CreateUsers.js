@@ -1,4 +1,5 @@
-// //Criação da Tabela de usuários em SQL para o DB
+//Criação da Tabela de usuários em SQL para o DB
+//Apenas para caso de estudo, atualmente usando o knex para gerar o DB
 
 // const createUsers = `
 // CREATE TABLE IF NOT EXISTS users (
