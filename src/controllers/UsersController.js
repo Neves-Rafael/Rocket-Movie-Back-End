@@ -16,6 +16,7 @@ class UsersController {
 
     //Criando conexão com o DB
     const database = await sqliteConnection();
+    
     //verificando se o usuário já existe a partir do email, utilizamos o select para ele fazer uma busca no DB e retornar se o email enviado já está cadastrado
     const checkUserExists = await database.get(
       "SELECT * FROM users WHERE email = (?)",
