@@ -15,7 +15,7 @@ const AppError = require("./utils/AppError");
 //coletando o express e atribuindo a uma const;
 const express = require("express")
 
-//importando as rotas;
+//importando as rotas do index dentro de routes;
 const routes = require("./routes");
 
 //inicializando o express;
@@ -24,6 +24,7 @@ const app = express();
 //Informando o formato que está sendo recebido (Podemos escolher outros formatos se necessário);
 app.use(express.json());
 
+//Adicionando as rotas para uso;
 app.use(routes);
 
 //Forma tradicional de se inicializar e  usar o SQL diretamente pelo JavasScript sem o query builder

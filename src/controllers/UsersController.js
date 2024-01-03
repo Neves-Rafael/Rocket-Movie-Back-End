@@ -1,4 +1,4 @@
-//Importando o Hash do Bcrypt e o compare para verificar senhas apos a cripitrografia
+//Importando o Hash do Bcrypt e o compare para verificar senhas apos a criptografia
 const { hash, compare } = require("bcryptjs");
 const knex = require("../database/knex");
 
@@ -74,7 +74,7 @@ class UsersController {
     }
 
     //se chegou até aqui após todas as etapas de verificação significa que podemos atualizar o usuário
-    //Fazemos uma verificação se o name ou email não forem passados com nulish operator
+    //Fazemos uma verificação se o name ou email não forem passados com nullish operator
     user.name = name ?? user.name;
     user.email = email ?? user.email;
 

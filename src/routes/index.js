@@ -10,7 +10,7 @@ const ratingRoutes = require("./rating.routes");
 
 const routes = Router();
 
-//Redireciona o caminho de solicitação para as routes e redirecionamos para o seu local especifíco por exemplo o userRoutes
+//Redireciona o caminho de solicitação para as routes e redirecionamos para o seu local especifico por exemplo o userRoutes
 routes.use("/users", usersRoutes);
 routes.use("/notes", notesRoutes);
 routes.use("/tags", tagsRoutes);
