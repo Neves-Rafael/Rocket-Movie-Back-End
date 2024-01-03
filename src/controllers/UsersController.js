@@ -34,8 +34,8 @@ class UsersController {
 
     //inserindo usuários na tabela
     await database.run(
-      "INSERT INTO users (name, email, password, admin) VALUES (?, ?, ?, ?)",
-      [name, email, hashedPassword, admin]
+      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+      [name, email, hashedPassword]
     );
 
     return response.status(201).json({
