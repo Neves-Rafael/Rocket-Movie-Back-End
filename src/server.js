@@ -1,6 +1,7 @@
 //expressjs é um framework web utilizado com node.js para simplificar o processo de criação de servidores web. Fornece uma amada de recursos para facilitar o roteamento e o gerenciamento de requisições/respostas. Pode criar facilmente rotas para diferentes URLs e manipular solicitações HTTP;
 
 //importando o express-async-errors;
+//trabalha junto do express para tratar erros de async
 require("express-async-errors");
 
 //importando conexão com o Sqlite, como passamos a usar o knex, não precisamos mais de fazer a conexão aqui;
