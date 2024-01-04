@@ -12,19 +12,13 @@ const AppError = require("../utils/AppError");
 class UsersController {
   //Criação do usuário;
   async create(request, response) {
-    const { name, email, password, admin } = request.body;
+    const { name, email, password } = request.body;
 
-    //Criando conexão com o DB;
+    //Criando conexão com o DB antiga, substituído pelo knex;
     // const database = await sqliteConnection();
 
     //verificando se o usuário já existe a partir do email, utilizamos o select para ele fazer uma busca no DB e retornar se o email enviado já está cadastrado;
-
     const checkUserExists = await knex("users").where({ email }).first();
-
-    // const checkUserExists = await database.get(
-    //   "SELECT * FROM users WHERE email = (?)",
-    //   [email]
-    // );
 
     if (checkUserExists) {
       throw new AppError(
@@ -37,10 +31,12 @@ class UsersController {
     const hashedPassword = await hash(password, 8);
 
     //inserindo usuários na tabela
-    await database.run(
-      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-      [name, email, hashedPassword]
-    );
+    await knex("users").insert({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
 
     return response.status(201).json({
       message: "Usuário cadastrado com sucesso!",
