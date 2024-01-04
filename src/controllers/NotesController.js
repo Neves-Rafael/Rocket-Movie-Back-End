@@ -55,23 +55,23 @@ class NotesController {
 
   //Aqui estamos criando a função para mostrar todas as notas cadastradas
   async index(request, response) {
-    const { user_id, title } = request.query;
+    const { user_id, title, tags } = request.query;
 
     //Aqui acontece a busca por todas as notas e temos o title que faz uma busca personalizada de acordo com o que foi passado na request.query.
-    if (title.length > 0) {
-      const allNotesWithSearch = await knex("notes")
-        .where({ user_id})
+    let notes;
+
+    if (tags) {
+      const filterTags = tags.split(",").map((tag) => tag.trim());
+
+      notes = await knex("tags").whereIn("name", filterTags);
+    } else {
+      notes = await knex("notes")
+        .where({ user_id })
         .whereLike("title", `%${title}%`)
         .orderBy("title")
         .select("title", "description", "rating");
-
-      return response.json( allNotesWithSearch );
-    } else {
-      const allNotes = await knex("notes")
-        .orderBy("title")
-        .select("title", "description", "rating");
-      return response.json( allNotes );
     }
+    return response.json(notes);
   }
 }
 
