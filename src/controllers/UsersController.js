@@ -97,6 +97,10 @@ class UsersController {
         throw new AppError("A senha antiga não confere");
       }
 
+      if(new_password === old_password) {
+        throw new AppError("A nova senha deve ser diferente da antiga");
+      }
+
       //se passou por todas as etapas de verificação atualizamos a senha;
       user.password = await hash(new_password, 8);
     }

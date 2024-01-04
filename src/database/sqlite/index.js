@@ -1,7 +1,9 @@
 //versão do driver para o sqlite;
 const sqlite3 = require("sqlite3");
+
 //Banco de dados do SQLite;
 const sqlite = require("sqlite");
+
 //Biblioteca já inserida com o node para resolver os endereços dos arquivos em qualquer sistema operacional;
 const path = require("path");
 

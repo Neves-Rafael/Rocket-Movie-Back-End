@@ -9,7 +9,7 @@ require("express-async-errors");
 // database();
 
 //importando as migrations de forma tradicional;
-const migrationsRun = require("./database/sqlite/migrations");
+// const migrationsRun = require("./database/sqlite/migrations");
 
 //importando AppError
 const AppError = require("./utils/AppError");
@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(routes);
 
 //Forma tradicional de se inicializar e  usar o SQL diretamente pelo JavasScript sem o query builder
-migrationsRun();
+// migrationsRun();
 
 //Verificação geral de errors, manter sintaxe mesmo se request e next não forem utilizados por exemplo;
 app.use((error, request, response, next) => {
