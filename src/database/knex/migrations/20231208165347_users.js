@@ -10,11 +10,12 @@ exports.up = (knex) =>
     table.text("email");
     table.text("password");
     table.text("avatar");
+    //atualizar para boolean futuramente
+    table.text("admin");
 
     //No default passamos uma função para atribuir o tempo
     table.timestamp("created_at").default(knex.fn.now());
     table.timestamp("updated_at").default(knex.fn.now());
-    table.boolean("admin");
   });
 
 exports.down = (knex) => knex.schema.dropTable("users");

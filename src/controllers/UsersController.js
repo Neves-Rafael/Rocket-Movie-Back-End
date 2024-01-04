@@ -12,7 +12,7 @@ const AppError = require("../utils/AppError");
 class UsersController {
   //Criação do usuário;
   async create(request, response) {
-    const { name, email, password } = request.body;
+    const { name, email, password, admin } = request.body;
 
     //Criando conexão com o DB antiga, substituído pelo knex;
     // const database = await sqliteConnection();
@@ -34,6 +34,7 @@ class UsersController {
     await knex("users").insert({
       name,
       email,
+      admin,
       password: hashedPassword,
     });
 
@@ -118,17 +119,20 @@ class UsersController {
 
     const user = await knex("users")
       .where({ id })
-      .select("id", "name", "email", "admin")
+      .select("admin")
       .first();
 
-    if (user.admin !== 1) {
+    if (user.admin !== "true") {
       throw new AppError(
         "você não tem permissão de administrador para acessar",
         400
       );
+    }else{
+      const showUsers = await knex("users")
+      .select("name", "email", "admin", "created_at", "updated_at");
+      return response.json({ showUsers });
     }
 
-    return response.json({ user });
   }
 }
 

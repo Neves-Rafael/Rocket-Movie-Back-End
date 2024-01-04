@@ -16,7 +16,6 @@ class RatingController {
       for (let i = 0; i < rating.length; i++) {
         sum += rating[i].stars;
       }
-
       let result = sum / rating.length;
       return response.json({
         message: "A media está em:",
