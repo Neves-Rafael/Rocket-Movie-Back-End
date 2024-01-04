@@ -16,7 +16,7 @@ class NotesController {
     });
 
     //Pegando campos para passar a tabela rating
-    const starsInsert = { description, user_id, note_id, stars };
+    const starsInsert = { user_id, note_id, stars };
 
     await knex("rating").insert(starsInsert);
 
@@ -55,22 +55,22 @@ class NotesController {
 
   //Aqui estamos criando a função para mostrar todas as notas cadastradas
   async index(request, response) {
-    const { title } = request.query;
+    const { user_id, title } = request.query;
 
-    //Aqui acontece a busca por todas as notas e temos o title que faz uma busca pesonalizada de acordo com o que foi passado na request.query.
-
+    //Aqui acontece a busca por todas as notas e temos o title que faz uma busca personalizada de acordo com o que foi passado na request.query.
     if (title.length > 0) {
       const allNotesWithSearch = await knex("notes")
+        .where({ user_id})
         .whereLike("title", `%${title}%`)
         .orderBy("title")
         .select("title", "description", "rating");
 
-      return response.json({ allNotesWithSearch });
+      return response.json( allNotesWithSearch );
     } else {
       const allNotes = await knex("notes")
         .orderBy("title")
         .select("title", "description", "rating");
-      return response.json({ allNotes });
+      return response.json( allNotes );
     }
   }
 }
