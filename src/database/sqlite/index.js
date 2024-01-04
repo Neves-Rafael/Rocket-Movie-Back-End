@@ -1,3 +1,4 @@
+/*
 //versão do driver para o sqlite;
 const sqlite3 = require("sqlite3");
 
@@ -22,3 +23,4 @@ async function sqliteConnection() {
 }
 
 module.exports = sqliteConnection;
+*/

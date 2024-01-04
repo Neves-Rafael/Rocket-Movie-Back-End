@@ -5,8 +5,8 @@ const knex = require("../database/knex");
 //importando AppError para verificações;
 const AppError = require("../utils/AppError");
 
-//importando conexão com o sqlite;
-const sqliteConnection = require("../database/sqlite");
+//importando conexão com o sqlite substituído pelo knex;
+// const sqliteConnection = require("../database/sqlite");
 
 //Controller deve possuir no máximo até 5 funções;
 class UsersController {
@@ -15,13 +15,16 @@ class UsersController {
     const { name, email, password, admin } = request.body;
 
     //Criando conexão com o DB;
-    const database = await sqliteConnection();
+    // const database = await sqliteConnection();
 
     //verificando se o usuário já existe a partir do email, utilizamos o select para ele fazer uma busca no DB e retornar se o email enviado já está cadastrado;
-    const checkUserExists = await database.get(
-      "SELECT * FROM users WHERE email = (?)",
-      [email]
-    );
+
+    const checkUserExists = await knex("users").where({ email }).first();
+
+    // const checkUserExists = await database.get(
+    //   "SELECT * FROM users WHERE email = (?)",
+    //   [email]
+    // );
 
     if (checkUserExists) {
       throw new AppError(
@@ -97,7 +100,7 @@ class UsersController {
         throw new AppError("A senha antiga não confere");
       }
 
-      if(new_password === old_password) {
+      if (new_password === old_password) {
         throw new AppError("A nova senha deve ser diferente da antiga");
       }
 
@@ -133,7 +136,6 @@ class UsersController {
       .select("id", "name", "email", "admin")
       .first();
 
-    console.log(user);
     if (user.admin !== 1) {
       throw new AppError(
         "você não tem permissão de administrador para acessar",
