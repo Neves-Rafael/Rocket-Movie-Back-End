@@ -51,7 +51,6 @@ class UsersController {
     //Buscando o usuário;
     const user = await knex("users").where({ id }).first();
 
-
     //Verificando se o usuário existe;
     if (!user) {
       throw new AppError(
@@ -62,7 +61,6 @@ class UsersController {
 
     //buscando email;
     const userWithUpdatedEmail = await knex("users").where({ email }).first();
-
 
     //verificando se o email alterado já está existente;
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
@@ -102,7 +100,7 @@ class UsersController {
     //enviando a atualização dos dados atualizados;
     //Passando o datetime por uma função do banco de dados;
 
-    await knex("users").where({ id:user.id }).update({
+    await knex("users").where({ id: user.id }).update({
       name: user.name,
       email: user.email,
       password: user.password,

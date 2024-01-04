@@ -8,14 +8,12 @@ exports.up = (knex) =>
     table.increments("id");
     //Estamos passando o user_id pegando a referencia do id da tabela de users
     table.integer("user_id").references("id").inTable("users");
+    table.integer("stars");
     table
       .integer("note_id")
       .references("id")
       .inTable("notes")
       .onDelete("CASCADE");
-    table.integer("stars");
-
-    table.text("description");
   });
 
 exports.down = (knex) => knex.schema.dropTable("rating");

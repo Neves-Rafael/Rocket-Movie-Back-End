@@ -6,6 +6,7 @@ exports.up = (knex) =>
   knex.schema.createTable("tags", (table) => {
     //criação da tabela de tags
     table.increments("id");
+    table.text("name");
     //Estamos passando o user_id pegando a referencia do id da tabela de users
     table.integer("user_id").references("id").inTable("users");
     table
@@ -14,7 +15,6 @@ exports.up = (knex) =>
       .inTable("notes")
       .onDelete("CASCADE");
 
-    table.text("name");
   });
 
 exports.down = (knex) => knex.schema.dropTable("tags");
