@@ -1,5 +1,9 @@
+//arquivo de configuração do knex;
+
+//path para resolver os caminhos de arquivos
 const path = require("path");
 
+//configuração do DB no knex e exportação
 module.exports = {
   development: {
     client: "sqlite3",
