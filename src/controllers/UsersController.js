@@ -37,7 +37,6 @@ class UsersController {
       password: hashedPassword,
     });
 
-
     return response.status(201).json({
       message: "Usuário cadastrado com sucesso!",
     });
@@ -49,11 +48,9 @@ class UsersController {
     const { old_password, new_password, email, name } = request.body;
     const { id } = request.params;
 
-    //conectando com o DB;
-    const database = await sqliteConnection();
-
     //Buscando o usuário;
-    const user = await database.get("SELECT * FROM users WHERE id = (?)", [id]);
+    const user = await knex("users").where({ id }).first();
+
 
     //Verificando se o usuário existe;
     if (!user) {
@@ -64,10 +61,8 @@ class UsersController {
     }
 
     //buscando email;
-    const userWithUpdatedEmail = await database.get(
-      "SELECT * FROM users WHERE email = (?)",
-      [email]
-    );
+    const userWithUpdatedEmail = await knex("users").where({ email }).first();
+
 
     //verificando se o email alterado já está existente;
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
@@ -106,17 +101,13 @@ class UsersController {
 
     //enviando a atualização dos dados atualizados;
     //Passando o datetime por uma função do banco de dados;
-    await database.run(
-      `
-      UPDATE users SET
-      name = ?,
-      email = ?,
-      password = ?,
-      updated_at = DATETIME('now') 
-      WHERE id = ?
-    `,
-      [user.name, user.email, user.password, user.id]
-    );
+
+    await knex("users").where({ id:user.id }).update({
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      updated_at: knex.fn.now(),
+    });
 
     //resposta de confirmação;
     return response.status(200).json({
