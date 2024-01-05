@@ -11,6 +11,9 @@ require("express-async-errors");
 //importando as migrations de forma tradicional;
 // const migrationsRun = require("./database/sqlite/migrations");
 
+//importando o cors para permitir conexão com o frontend;
+const cors = require("cors")
+
 //importando AppError
 const AppError = require("./utils/AppError");
 
@@ -24,6 +27,9 @@ const routes = require("./routes");
 
 //inicializando o express;
 const app = express();
+
+//habilitando o cors para permitir conexão com o frontend;
+app.use(cors())
 
 //Informando o formato que está sendo recebido (Podemos escolher outros formatos se necessário);
 app.use(express.json());
