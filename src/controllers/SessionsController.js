@@ -4,6 +4,12 @@ const knex = require("../database/knex");
 //Importando o Hash do Bcrypt e o compare para verificar senhas apos a criptografia;
 const { compare } = require("bcryptjs");
 
+//importando o authConfig para gerar o token
+const authConfig = require("../configs/auth");
+
+//função de sign para gerar o token
+const {sign} = require("jsonwebtoken");
+
 //Importando o AppError para tratamento personalizado
 const AppError = require("../utils/AppError");
 
@@ -29,7 +35,15 @@ class SessionsController {
         throw new AppError('E-mail ou senha inválidos', 401);
     }
 
-    return response.json({ user });
+    
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({},secret,{
+        subject: String(user.id),
+        expiresIn
+    })
+
+    return response.json({ user, token });
   }
 }
 
