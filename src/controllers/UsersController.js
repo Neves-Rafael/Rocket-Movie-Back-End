@@ -50,7 +50,7 @@ class UsersController {
     const user_id = request.user.id;
 
     //Buscando o usuário;
-    const user = await knex("users").where({ user_id }).first();
+    const user = await knex("users").where({ id: user_id }).first();
 
     //Verificando se o usuário existe;
     if (!user) {
@@ -101,7 +101,7 @@ class UsersController {
     //enviando a atualização dos dados atualizados;
     //Passando o datetime por uma função do banco de dados;
 
-    await knex("users").where({ user_id }).update({
+    await knex("users").where({id: user_id}).update({
       name: user.name,
       email: user.email,
       password: user.password,
@@ -115,24 +115,24 @@ class UsersController {
   }
 
   async show(request, response) {
-
-
-    const user = await knex("users")
-      .where({ id })
-      .select("admin")
-      .first();
+    const user_id = request.user.id;
+    const user = await knex("users").where({ id: user_id }).select("admin").first();
 
     if (user.admin !== "true") {
       throw new AppError(
         "você não tem permissão de administrador para acessar",
         400
       );
-    }else{
-      const showUsers = await knex("users")
-      .select("name", "email", "admin", "created_at", "updated_at");
+    } else {
+      const showUsers = await knex("users").select(
+        "name",
+        "email",
+        "admin",
+        "created_at",
+        "updated_at"
+      );
       return response.json({ showUsers });
     }
-
   }
 }
 
