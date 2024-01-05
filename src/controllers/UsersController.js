@@ -47,10 +47,10 @@ class UsersController {
   async update(request, response) {
     //pegando os parâmetros;
     const { old_password, new_password, email, name } = request.body;
-    const { id } = request.params;
+    const user_id = request.user.id;
 
     //Buscando o usuário;
-    const user = await knex("users").where({ id }).first();
+    const user = await knex("users").where({ user_id }).first();
 
     //Verificando se o usuário existe;
     if (!user) {
@@ -101,7 +101,7 @@ class UsersController {
     //enviando a atualização dos dados atualizados;
     //Passando o datetime por uma função do banco de dados;
 
-    await knex("users").where({ id: user.id }).update({
+    await knex("users").where({ user_id }).update({
       name: user.name,
       email: user.email,
       password: user.password,
@@ -115,7 +115,7 @@ class UsersController {
   }
 
   async show(request, response) {
-    const { id } = request.params;
+
 
     const user = await knex("users")
       .where({ id })
