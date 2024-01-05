@@ -11,6 +11,7 @@ const notesRoutes = Router();
 const notesController = new NotesController();
 
 //Fazendo uma requisição com o post chamando o MovieNotesController.create para gerar um novo usuário
+
 //Query Params
 notesRoutes.post("/:user_id", notesController.create);
 notesRoutes.get("/:id", notesController.show);
