@@ -2,7 +2,8 @@
 class SessionsController {
     //criando a conexão do usuário
     async create(request, response) {
-        return response.json();
+        const { email, password } = request.body;
+        return response.json({email, password});
     }
 }
 

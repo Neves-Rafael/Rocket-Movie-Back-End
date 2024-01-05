@@ -50,7 +50,7 @@ class NotesController {
 
     await knex("notes").where({ id }).delete();
 
-    response.json({ message: "A note foi excluida com sucesso!" });
+    return response.json({ message: "A note foi excluida com sucesso!" });
   }
 
   //Aqui estamos criando a função para mostrar todas as notas cadastradas
