@@ -10,7 +10,7 @@ const crypto = require("crypto");
 //caminho da pasta temp
 const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp");
 //caminho da pasta de upload
-const UPLOAD_FOLDER = path.resolve(__dirname, "uploads");
+const UPLOAD_FOLDER = path.resolve(TMP_FOLDER, "uploads");
 
 const MULTER = {
   //propriedade do multer de storage
