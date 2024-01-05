@@ -5,7 +5,7 @@ class NotesController {
   //Aqui estamos criando as notas e repassando para as outras tabelas o valores
   async create(request, response) {
     const { title, description, tags, stars, rating } = request.body;
-    const { user_id } = request.params;
+    const user_id = request.user.id;
 
     //Repassando informações da nota e repassando para as tags e os links
     const [note_id] = await knex("notes").insert({
@@ -50,12 +50,13 @@ class NotesController {
 
     await knex("notes").where({ id }).delete();
 
-    return response.json({ message: "A note foi excluida com sucesso!" });
+    return response.json({ message: "A note foi excluída com sucesso!" });
   }
 
   //Aqui estamos criando a função para mostrar todas as notas cadastradas
   async index(request, response) {
-    const { user_id, title, tags } = request.query;
+    const { title, tags } = request.query;
+    const user_id = request.user.id;
 
     //Aqui acontece a busca por todas as notas e temos o title que faz uma busca personalizada de acordo com o que foi passado na request.query.
     let notes;
@@ -82,9 +83,9 @@ class NotesController {
       const noteTags = userTags.filter((tag) => tag.note_id === note.id);
       return {
         ...note,
-        tags: noteTags
-      }
-    })
+        tags: noteTags,
+      };
+    });
     return response.json(notesWithTags);
   }
 }
