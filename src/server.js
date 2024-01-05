@@ -14,6 +14,8 @@ require("express-async-errors");
 //importando AppError
 const AppError = require("./utils/AppError");
 
+const uploadConfig = require("./configs/upload");
+
 //coletando o express e atribuindo a uma const;
 const express = require("express");
 
@@ -28,6 +30,9 @@ app.use(express.json());
 
 //Adicionando as rotas para uso;
 app.use(routes);
+
+//adicionando com o express um metodo para servir arquivos estáticos com o static e pegamos o uploadConfig para passar o caminho de arquivos;
+app.use("/files", express.static(uploadConfig.UPLOAD_FOLDER));
 
 //Forma tradicional de se inicializar e  usar o SQL diretamente pelo JavasScript sem o query builder
 // migrationsRun();
