@@ -12,14 +12,18 @@ const uploadConfig = require("../configs/upload");
 //importando o users Controller para repassar a funcionalidade;
 const UsersController = require("../controllers/UsersController");
 
+//importando o controller do avatar de usuário;
+const UserAvatarController = require("../controllers/UserAvatarController");
+
 //inicializando o Router;
 const usersRoutes = Router();
 
 //configurando o multer
 const upload = multer(uploadConfig.MULTER);
 
-//instanciando a classe;
+//instanciando as classes;
 const usersController = new UsersController();
+const userAvatarController = new UserAvatarController();
 
 //Fazendo uma requisição com o post chamando o usersController.create para gerar um novo usuário;
 
@@ -32,10 +36,7 @@ usersRoutes.patch(
   "/avatar",
   ensureAuthenticated,
   upload.single("avatar"),
-  (request, response) => {
-    console.log(request.file);
-    response.json();
-  }
+  userAvatarController.update
 );
 
 //exportando para quem quiser utilizar;
