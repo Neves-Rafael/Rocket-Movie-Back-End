@@ -35,9 +35,10 @@ class SessionsController {
         throw new AppError('E-mail ou senha inválidos', 401);
     }
 
-    
+    //capturando os dados do authConfig
     const { secret, expiresIn } = authConfig.jwt;
 
+    //gerando o token e passando os dados do user convertido em string e o tempo de expiração
     const token = sign({},secret,{
         subject: String(user.id),
         expiresIn
