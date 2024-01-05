@@ -14,7 +14,6 @@ exports.up = (knex) =>
       .references("id")
       .inTable("notes")
       .onDelete("CASCADE");
-
   });
 
 exports.down = (knex) => knex.schema.dropTable("tags");

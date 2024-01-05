@@ -8,7 +8,7 @@ const { compare } = require("bcryptjs");
 const authConfig = require("../configs/auth");
 
 //função de sign para gerar o token
-const {sign} = require("jsonwebtoken");
+const { sign } = require("jsonwebtoken");
 
 //Importando o AppError para tratamento personalizado
 const AppError = require("../utils/AppError");
@@ -23,26 +23,26 @@ class SessionsController {
     const user = await knex("users").where({ email }).first();
 
     //verificando se o user existe e lançando um new error
-    if(!user){
-        throw new AppError('E-mail ou senha inválidos', 401);
+    if (!user) {
+      throw new AppError("E-mail ou senha inválidos", 401);
     }
 
     //verificando se a senha bate com a criptografia
     const passwordMatched = await compare(password, user.password);
 
     //verificando se existe um retorno da comparação de senha e lançando um new erro
-    if(!passwordMatched){
-        throw new AppError('E-mail ou senha inválidos', 401);
+    if (!passwordMatched) {
+      throw new AppError("E-mail ou senha inválidos", 401);
     }
 
     //capturando os dados do authConfig
     const { secret, expiresIn } = authConfig.jwt;
 
     //gerando o token e passando os dados do user convertido em string e o tempo de expiração
-    const token = sign({},secret,{
-        subject: String(user.id),
-        expiresIn
-    })
+    const token = sign({}, secret, {
+      subject: String(user.id),
+      expiresIn,
+    });
 
     return response.json({ user, token });
   }

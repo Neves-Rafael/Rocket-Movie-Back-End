@@ -5,14 +5,14 @@
 require("express-async-errors");
 
 //importando conexão com o Sqlite, como passamos a usar o knex, não precisamos mais de fazer a conexão aqui. -- substituído pelas migrations;
-// const database = require("./database/sqlite/migrations") 
+// const database = require("./database/sqlite/migrations")
 // database();
 
 //importando as migrations de forma tradicional;
 // const migrationsRun = require("./database/sqlite/migrations");
 
 //importando o cors para permitir conexão com o frontend;
-const cors = require("cors")
+const cors = require("cors");
 
 //importando AppError
 const AppError = require("./utils/AppError");
@@ -29,7 +29,7 @@ const routes = require("./routes");
 const app = express();
 
 //habilitando o cors para permitir conexão com o frontend;
-app.use(cors())
+app.use(cors());
 
 //Informando o formato que está sendo recebido (Podemos escolher outros formatos se necessário);
 app.use(express.json());
