@@ -2,7 +2,7 @@
 const knex = require("../database/knex");
 
 class NotesController {
-  //Aqui estamos criando as notas e repassando para as outras tabelas o valores
+  //Aqui estamos criando as notas e repassando para as outras tabelas o valores;
   async create(request, response) {
     const { title, description, tags, stars, rating } = request.body;
     const user_id = request.user.id;
@@ -32,7 +32,7 @@ class NotesController {
     return response.json();
   }
 
-  //Aqui estamos criando a função de mostrar as notas e o que está vinculado
+  //Aqui estamos criando a função de mostrar as notas e o que está vinculado;
   async show(request, response) {
     const { id } = request.params;
 
@@ -44,7 +44,7 @@ class NotesController {
     return response.json({ ...note, tags, rating });
   }
 
-  //Aqui estamos criando a função para deletar uma nota
+  //Aqui estamos criando a função para deletar uma nota;
   async delete(request, response) {
     const { id } = request.params;
 
@@ -53,7 +53,7 @@ class NotesController {
     return response.json({ message: "A note foi excluída com sucesso!" });
   }
 
-  //Aqui estamos criando a função para mostrar todas as notas cadastradas
+  //Aqui estamos criando a função para mostrar todas as notas cadastradas;
   async index(request, response) {
     const { title, tags } = request.query;
     const user_id = request.user.id;
