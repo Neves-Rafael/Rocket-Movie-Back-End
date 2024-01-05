@@ -101,7 +101,7 @@ class UsersController {
     //enviando a atualização dos dados atualizados;
     //Passando o datetime por uma função do banco de dados;
 
-    await knex("users").where({id: user_id}).update({
+    await knex("users").where({ id: user_id }).update({
       name: user.name,
       email: user.email,
       password: user.password,
@@ -120,7 +120,10 @@ class UsersController {
     const user_id = request.user.id;
 
     //buscando na tabela de users se possui ou não a permissão de administrador;
-    const user = await knex("users").where({ id: user_id }).select("admin").first();
+    const user = await knex("users")
+      .where({ id: user_id })
+      .select("admin")
+      .first();
 
     //verificando se o usuário possui permissão de administrador;
     if (user.admin !== "true") {

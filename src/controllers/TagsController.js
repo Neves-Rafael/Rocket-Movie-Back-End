@@ -3,9 +3,10 @@ const knex = require("../database/knex");
 
 class TagsController {
   async index(request, response) {
-    //verificar para fazer uma busca completa de tags e não pelo user_id;
-    const { user_id } = request.params;
+    //pegando o id do usuário da autenticação;
+    const user_id = request.user.id;
 
+    //buscando as tags
     const tags = await knex("tags").where({ user_id });
 
     return response.json(tags);
