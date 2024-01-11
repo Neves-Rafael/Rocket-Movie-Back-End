@@ -29,7 +29,7 @@ const userAvatarController = new UserAvatarController();
 
 usersRoutes.post("/", usersController.create);
 usersRoutes.put("/", ensureAuthenticated, usersController.update);
-usersRoutes.get("/", ensureAuthenticated, usersController.show);
+usersRoutes.get("/:id", ensureAuthenticated, usersController.show);
 
 //estamos passando o multer que foi inicializado na const upload com o parâmetro de single para apenas um e o campo "avatar" para ir buscar o arquivo;
 usersRoutes.patch(

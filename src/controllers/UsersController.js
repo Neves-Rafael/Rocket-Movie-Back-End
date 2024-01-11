@@ -118,30 +118,19 @@ class UsersController {
   async show(request, response) {
     //pegando o id do usuário da autenticação;
     const user_id = request.user.id;
+    const { id } = request.params;
 
     //buscando na tabela de users se possui ou não a permissão de administrador;
-    const user = await knex("users")
-      .where({ id: user_id })
-      .select("admin")
-      .first();
+    const user = await knex("users").where({ id }).select("name").first();
 
-    //verificando se o usuário possui permissão de administrador;
-    if (user.admin !== "true") {
-      throw new AppError(
-        "você não tem permissão de administrador para acessar",
-        400
-      );
-    } else {
-      //usuário autenticado retornando os dados dos usuários para visualização;
-      const showUsers = await knex("users").select(
-        "name",
-        "email",
-        "admin",
-        "created_at",
-        "updated_at"
-      );
-      return response.json({ showUsers });
-    }
+    const showUsers = await knex("users").select(
+      "name",
+      "email",
+      "admin",
+      "created_at",
+      "updated_at"
+    );
+    return response.json({ user });
   }
 }
 
