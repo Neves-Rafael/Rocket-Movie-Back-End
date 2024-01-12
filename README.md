@@ -11,6 +11,13 @@
 <p align="center">Utilizando Node.Js com o insomnia, beekeeper, SQLite3 e dependências como Express, Knex e Bcryptjs desenvolvi um Back-End possuindo autenticações para verificação de usuários já existentse e atualização dos dados.</p>
 <br/>
 
+<p align="center">Projeto desenvolvido durante o curso <strong>Explorer</strong> oferecida pela <a href="https://app.rocketseat.com.br/">RocketSeat</a>.<br/>
+<br/>
+<br/>
+
+<h3 align="center"><a href="https://github.com/Neves-Rafael/Rocket-Movie-Back-End">Link Para Acessar Front-End</a></h3>
+<br/>
+<br/>
 
 
 
