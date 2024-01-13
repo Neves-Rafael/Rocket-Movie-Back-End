@@ -4,6 +4,9 @@
 //trabalha junto do express para tratar erros de async
 require("express-async-errors");
 
+
+require("dotenv/config");
+
 //importando conexão com o Sqlite, como passamos a usar o knex, não precisamos mais de fazer a conexão aqui. -- substituído pelas migrations;
 // const database = require("./database/sqlite/migrations")
 // database();
@@ -62,7 +65,7 @@ app.use((error, request, response, next) => {
 });
 
 //Porta onde será inicializado;
-const PORT = 3333;
+const PORT = process.env.SERVER_PORT || 3333;
 
 //Adicionado um Listen para observar a PORT;
 app.listen(PORT, () => {
