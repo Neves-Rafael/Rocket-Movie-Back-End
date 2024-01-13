@@ -121,7 +121,10 @@ class UsersController {
     const { id } = request.params;
 
     //buscando na tabela de users se possui ou não a permissão de administrador;
-    const user = await knex("users").where({ id }).select("name").first();
+    const user = await knex("users")
+      .where({ id })
+      .select("name", "avatar")
+      .first();
 
     const showUsers = await knex("users").select(
       "name",
